@@ -1,0 +1,217 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doctors List</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+  <link rel="stylesheet" href="./styles/all_doctors.css">
+   <link rel="icon" href="./Assets/HealthMate_Logo.png">
+</head>
+
+<body>
+  <!-- Main Nav Bar -->
+  <header class="sticky">
+    <div class="container-fluid con">
+      <div class="logo">
+        <img src="./Assets/HealthMate_Logo.png" width="60px" alt="logo">
+      </div>
+      <div class="nav">
+        <input type="checkbox" id="menu-toggle" />
+        <label for="menu-toggle" class="menu"></label>
+        <div class="nav-1 item"><a href="./index.html">HOME</a></div>
+        <div class="nav-2 item"><a href="./all_doctors.html">ALL DOCTORS</a></div>
+        <div class="nav-3 item"><a href="./about.html">ABOUT</a></div>
+        <div class="nav-4 item"><a href="./contact.html">CONTACT</a></div>
+      </div>
+
+      <div id="header" style="display: flex; justify-content: space-between; align-items: center; padding: 10px;">
+        <a href="./create_account.html">
+          <button id="createAccountBtn" class="con_createbtn"
+            style="background-color: #4E71FF; color:white; padding: 10px; border-radius: 10px; border: none;">
+            Create Account
+          </button>
+        </a>
+
+        <div id="userProfile" class="dropdown-toggle" style="display: none;">
+          <img id="profileImage" src="https://cdn-icons-png.flaticon.com/512/847/847969.png" width="30" height="30"
+            class="rounded-circle" alt="Profile" />
+          <span id="userName">Chandana</span>
+        </div>
+
+        <div id="dropdownMenu" class="dropdown-menu">
+          <a href="#" id="logoutBtn">Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container-fluid con1">
+    <div class="row">
+      <div class="col-md-3 con1-buttons" id="filter-buttons">
+        <p class="con1-list-head">Browse through the doctors’ specialties.</p>
+        <input type="button" onclick="filterDoctors('Physician')" value="Physician" class="con1-button1"><br><br>
+        <input type="button" onclick="filterDoctors('Gynecologist')" value="Gynecologist" class="con1-button2"><br><br>
+        <input type="button" onclick="filterDoctors('Dermatologist')" value="Dermatologist"
+          class="con1-button3"><br><br>
+        <input type="button" onclick="filterDoctors('Pediatricians')" value="Pediatricians"
+          class="con1-button4"><br><br>
+        <input type="button" onclick="filterDoctors('Neurologist')" value="Neurologist" class="con1-button5"><br><br>
+        <input type="button" onclick="filterDoctors('Gastroenterologist')" value="Gastroenterologist"
+          class="con1-button6">
+      </div>
+
+      <div class="col-md-9 con1-container">
+        <div id="gallery" class="card-container"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container-fluid con2">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="con2-footer">
+            <img src="./Assets/HealthMate_Logo.png" width="50px" alt="HealthMate_Logo">
+            <span class="con2-name">HealthMate</span>
+            <div class="col-md-8 con2-para">
+              <p class="con3-para">
+                Health Mate is your trusted digital healthcare companion, committed to making medical
+                services more accessible and convenient. From booking appointments to tracking
+                prescriptions and managing health records, Built with care for both patients and
+                healthcare
+                professionals.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="con2-company">
+            <h2>Company</h2>
+            <ul class="footer-company-list">
+              <li>Home</li>
+              <li>About us</li>
+              <li>Delivery</li>
+              <li>Privacy Policy</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="con2-GIT">
+            <h2>Get In Touch</h2>
+            <ul class="footer-GIT-list">
+              <li>+1-412-456-7890</li>
+              <li>healthmate@gmail.com</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <center>
+        <p class="Copyright">Copyright @ 2025 Healthmate.com - All Rights Reserved.</p>
+      </center>
+    </div>
+  </footer>
+
+  <script>
+    let doctorsData = [];
+
+    async function fetchDoctors() {
+      try {
+        const response = await fetch('http://localhost:8093/api/doctors/getall');
+        doctorsData = await response.json();
+        displayDoctors(doctorsData);
+      } catch (error) {
+        console.error('Error fetching doctors:', error);
+        alert('Unable to load doctors.');
+      }
+    }
+
+    function displayDoctors(data) {
+      const gallery = document.getElementById('gallery');
+      gallery.innerHTML = '';
+
+      data.forEach(doc => {
+        const card = document.createElement('div');
+        card.className = 'doc-card';
+        card.innerHTML = `
+                <img class="doc_images" src="${doc.image}" alt="${doc.name}" title="${doc.name}" />
+                <p class="doc_available" id="doc_available_text">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="green" class="bi bi-dot" viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
+                    </svg>${doc.available}</p>
+                <h5 id="doc_names">${doc.name}</h5>
+                <p id="doc_speciality">${doc.speciality}</p>
+            `;
+        card.addEventListener('click', () => {
+          const encodedDoc = encodeURIComponent(JSON.stringify(doc));
+          window.location.href = `doctors_details.html?data=${encodedDoc}`;
+        });
+        gallery.appendChild(card);
+      });
+    }
+
+    function filterDoctors(speciality) {
+      const filtered = doctorsData.filter(doc => doc.speciality.includes(speciality));
+      displayDoctors(filtered);
+    }
+
+    fetchDoctors();
+
+    // Profile + Dropdown Logic remains same
+    document.addEventListener('DOMContentLoaded', () => {
+      const isLoggedIn = localStorage.getItem('isLoggedIn');
+      const userName = localStorage.getItem('name');
+      const createAccountBtn = document.getElementById('createAccountBtn');
+      const userProfile = document.getElementById('userProfile');
+      const userNameSpan = document.getElementById('userName');
+
+      if (isLoggedIn === 'true' && userName) {
+        createAccountBtn.style.display = 'none';
+        userProfile.style.display = 'flex';
+        userNameSpan.textContent = userName;
+      } else {
+        createAccountBtn.style.display = 'inline-block';
+        userProfile.style.display = 'none';
+      }
+    });
+
+    const userProfile = document.getElementById("userProfile");
+    const dropdownMenu = document.getElementById("dropdownMenu");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    userProfile.addEventListener("click", (e) => {
+      e.stopPropagation();
+      dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!userProfile.contains(e.target)) {
+        dropdownMenu.style.display = "none";
+      }
+    });
+
+    logoutBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      localStorage.clear();
+      window.location.href = "index.html";
+    });
+
+
+    window.addEventListener('DOMContentLoaded', () => {
+            const profileImg = document.getElementById('profileImage');
+            const savedImage = localStorage.getItem('profileImage');
+            if (savedImage && profileImg) {
+                profileImg.src = savedImage;
+            }
+        });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,186 @@
+{
+   "doctors": [
+      {
+         "doc_1": {
+            
+            "name": "Dr.Jagadeesh",
+            "available":"Available",
+            "speciality1":"Physician",
+            "speciality": "MBBS - Genearal physician",
+            "experience": "4 Years",
+            "about_doctor": "About ",
+            "about": "Dr. Jagadeesh has a strong commitment to delivering comprehensive medical care,focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Grant is dedicated to patient-centered care, ensuring each individual receives timely and appropriate healthcare solutions tailored to their needs.",
+            "fee": "250Rs",
+            "image": "https://raw.githubusercontent.com/Chandana-ghb/HealthMate_Major_Project/refs/heads/main/top1_doctor.png"
+         },
+
+         "doc_2": {
+            "name": "Dr.Akshaya",
+            "available":"Available",
+            "speciality1":"Gynecologist",
+            "speciality": "MBBS - Gynecologist",
+            "experience": "3 Years",
+            "about doctor": "About",
+            "about": "Dr.Durga is a dedicated Gynecologist specializing in women's health and wellness. She focuses on preventive care, reproductive health, and patient-centered treatment. With a compassionate approach, she empowers women through every stage of life. Her commitment ensures personalized care tailored to each patient's unique needs.",
+            "fee": "300Rs",
+            "image": "https://github.com/Chandana-ghb/HealthMate_Major_Project/blob/main/top2_doctor.png?raw=true"
+         },
+         "doc_3": {
+            
+            "name": "Dr.Siva Balaji",
+            "available":"Available",
+            "speciality1":"Dermatologist",
+            "speciality": "MBBS - Dermatologist",
+            "experience": "5 Years",
+            "about doctor": "About ",
+            "about": "Dr.Balaji is an experienced Dermatologist specializing in skin, hair, and nail health. He focuses on early diagnosis, advanced treatments, and long-term skin wellness. With a patient-first approach, he provides personalized solutions for all ages. Dr. Brooks is committed to helping patients achieve healthy, confident skin.",
+            "fee": "275Rs",
+            "image": "https://github.com/Chandana-ghb/HealthMate_Major_Project/blob/main/top3_doctor.png?raw=true"
+         },
+         "doc_4": {
+            
+            "name": "Dr.Chandana",
+            "available":"Available",
+            "speciality1":"Pediatricians",
+            "speciality": "MBBS - Pediatricians",
+            "experience": "2 Years",
+            "about doctor": "About ",
+            "about": "Dr.Chandana is a compassionate Pediatrician dedicated to children's health and development. She offers expert care from infancy through adolescence, focusing on prevention and wellness. Her warm, family-centered approach builds trust with both children and parents. Dr. Miles is committed to nurturing young lives with personalized, attentive care.",
+            "fee": "300Rs",
+            "image": "https://github.com/Chandana-ghb/HealthMate_Major_Project/blob/main/top4_doctor.png?raw=true"
+         },
+         "doc_5": {
+            
+            "name": "Dr.Arun Kumar",
+            "available":"Available",
+            "speciality1":"Neurologist",
+            "speciality": "MBBS - Neurologist",
+            "experience": "6 Years",
+            "about doctor": "About ",
+            "about": "Dr.Arun is a skilled Neurologist specializing in disorders of the brain and nervous system. He provides advanced diagnostic and treatment solutions for complex neurological conditions. With a focus on patient-centered care, he ensures clarity and comfort at every step. Dr. Clark is dedicated to improving lives through expert, compassionate neurological care.",
+            "fee": "220Rs",
+            "image": "https://github.com/Chandana-ghb/HealthMate_Major_Project/blob/main/top5_doctor.png?raw=true"
+         },
+         "doc_6": {
+            
+            "name": "Dr.Geetha Priya",
+            "available":"Available",
+            "speciality1":"Gastroenterologist",
+            "speciality": "MBBS - Gastroenterologist",
+            "experience": "3 Years",
+            "about doctor": "About ",
+            "about": "Dr. Geetha is an expert Gastroenterologist focused on digestive health and wellness. She specializes in diagnosing and treating conditions of the stomach, liver, and intestines. With a thorough and caring approach, she tailors treatments to each patient's needs. Dr. Foster is committed to improving quality of life through effective gastrointestinal care.",
+            "fee": "250Rs",
+            "image": "https://github.com/Chandana-ghb/HealthMate_Major_Project/blob/main/top6_doctor.png?raw=true"
+         },
+         "doc_7": {
+        
+            "name": "Dr.Krishna Kumar",
+            "available":"Available",
+            "speciality1":"Neurologist",
+            "speciality": "MBBS - Neurologist",
+            "experience": "5 Years",
+            "about doctor": "About ",
+            "about": "Dr. Krishna is a dedicated Neurologist specializing in brain, spine, and nervous system disorders.He offers expert care for conditions like migraines, epilepsy, stroke, and neurodegenerative diseases. With a compassionate and analytical approach, he ensures personalized treatment plans. Dr. Scott is committed to enhancing neurological health and patient well-being.",
+            "fee": "275Rs",
+            "image": "https://github.com/Chandana-ghb/HealthMate_Major_Project/blob/main/top7_doctor.png?raw=true"
+         },
+         "doc_8": {
+           
+            "name": "Dr.Durga Sri",
+            "available":"Available",
+            "speciality1":"Physician",
+            "speciality": "MBBS - General Physician",
+            "experience": "6 Years",
+            "about doctor": "About ",
+            "about": "Dr. Durga is a trusted General Physician providing comprehensive primary care for all ages. She focuses on preventive health, accurate diagnosis, and effective treatment of common illnesses.Her patient-first approach ensures compassionate and individualized care. Dr. Lane is committed to promoting long-term wellness and healthier lifestyles.",
+            "fee": "260Rs",
+            "image": "https://github.com/Chandana-ghb/HealthMate_Major_Project/blob/main/top8_doctor.png?raw=true"
+         },
+         "doc_9": {
+         
+            "name": "Dr.Ramesh",
+            "available":"Available",
+            "speciality1":"Gynecologist",
+            "speciality": "MBBS - Gynecologist",
+            "experience": "4 Years",
+            "about doctor": "About ",
+            "about": "Dr.Ramesh has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Grant is dedicated to patient-centered care, ensuring each individual receives timely and appropriate healthcare solutions tailored to their needs.",
+            "fee": "300Rs",
+            "image": "https://github.com/Chandana-ghb/HealthMate_Major_Project/blob/main/top9_doctor.png?raw=true"
+         },
+         "doc_10": {
+          
+            "name": "Dr.Dr.Aloha",
+            "available":"Available",
+            "speciality1":"Dermatologist",
+            "speciality": "MBBS - Dermatologist",
+            "experience": "5 Years",
+            "about doctor": "About ",
+            "about": "Dr. Aloha is a skilled Dermatologist specializing in skin, hair, and nail care. She offers advanced treatments for acne, eczema, pigmentation, and other skin conditions. Her gentle, patient-focused approach ensures comfort and confidence in every visit. Dr. Bennett is committed to helping patients achieve healthy, radiant skin.",
+            "fee": "325Rs",
+            "image": "https://github.com/Chandana-ghb/HealthMate_Major_Project/blob/main/top10_doctor.png?raw=true"
+         },
+         "doc_11": {
+           
+            "name": "Dr.Ram Prasad",
+            "available":"Available",
+            "speciality1":"Pediatricians",
+            "speciality": "MBBS - Pediatricians",
+            "experience": "7 Years",
+            "about doctor": "About ",
+            "about": "Dr. Prasad is a caring Pediatrician devoted to the health and development of children.He provides expert care from infancy through adolescence, focusing on prevention and growth.With a warm and approachable manner, he builds strong bonds with families.Dr. Hayes is committed to nurturing young patients with personalized, attentive care.",
+            "fee": "250Rs",
+            "image": "https://github.com/Chandana-ghb/HealthMate_Major_Project/blob/main/top11_doctor.png?raw=true"
+         },
+         "doc_12": {
+         
+            "name": "Dr.Sree Leela",
+            "available":"Available",
+            "speciality1":"Gastroenterologist",
+            "speciality": "MBBS - Gastroenterologist",
+            "experience": "4 Years",
+            "about doctor": "About ",
+            "about": "Dr.Leeala is a dedicated Gastroenterologist specializing in digestive system health. She expertly diagnoses and treats conditions affecting the stomach, liver, and intestines.Her patient-centered care emphasizes comfort, clarity, and long-term wellness.Dr. Cross is committed to restoring and maintaining optimal digestive health.",
+            "fee": "320Rs",
+            "image": "https://github.com/Chandana-ghb/HealthMate_Major_Project/blob/main/top12_doctor.png?raw=true"
+         },
+         "doc_13": {
+            
+            "name": "Dr.Gopi Krishna",
+            "available":"Available",
+            "speciality1":"Gynecologist",
+            "speciality": "MBBS - Gynecologist",
+            "experience": "2 Years",
+            "about doctor": "About ",
+            "about": "Dr. Krishna Cole is a compassionate Gynecologist focused on women’s reproductive health and wellness. He provides expert care in prenatal health, fertility, and routine gynecological needs. With a personalized approach, he ensures each patient feels supported and informed.",
+            "fee": "320Rs",
+            "image": "https://github.com/Chandana-ghb/HealthMate_Major_Project/blob/main/top13_doctor.png?raw=true"
+         },
+         "doc_14": {
+           
+            "name": "Dr.Sai Nikila",
+            "available":"Available",
+            "speciality1":"Dermatologist",
+            "speciality": "MBBS - Dermatologist",
+            "experience": "3 Years",
+            "about doctor": "About ",
+            "about": "Dr. Nikila is an experienced Dermatologist specializing in skin health and cosmetic dermatology. She treats a wide range of conditions including acne, psoriasis, and skin aging concerns. With a gentle and detail-oriented approach, she tailors care to each patient's needs.Dr. Moore is committed to helping patients achieve clear, healthy, and glowing skin.",
+            "fee": "275Rs",
+            "image": "https://github.com/Chandana-ghb/HealthMate_Major_Project/blob/main/top14_doctor.png?raw=true"
+         },
+         "doc_15": {
+          
+            "name": "Dr.Arun Kumar",
+            "available":"Available",
+            "speciality1":"Gastroenterologist",
+            "speciality": "MBBS - Gastroenterologist",
+            "experience": "7 Years",
+            "about doctor": "About ",
+            "about": "Dr. Arun is a skilled Gastroenterologist specializing in digestive and liver health. He provides expert diagnosis and treatment for conditions like IBS, ulcers, and hepatitis. With a thorough and compassionate approach, he ensures patient comfort and clarity.Dr. Blake is committed to promoting long-term gastrointestinal wellness for every patient.",
+            "fee": "350Rs",
+            "image": "https://github.com/Chandana-ghb/HealthMate_Major_Project/blob/main/top15_doctor.png?raw=true"
+         }
+      }
+   ]
+}

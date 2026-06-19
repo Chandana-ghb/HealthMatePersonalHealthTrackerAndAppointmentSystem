@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>HealthMate - Create Account / Login</title>
+    <link rel="stylesheet" href="./styles/login.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="./styles/login.css">
+     <link rel="icon" href="./Assets/HealthMate_Logo.png">
+</head>
+
+<body>
+    <div class="split-background"></div>
+
+    <div class="header-text">
+        <span class="hospital">HEALTH<span class="alt">MATE</span></span>
+        <span class="create" id="formHeading">CREATE ACCOUNT</span>
+    </div>
+
+    <div class="card-container">
+
+        <!-- Sign Up Form -->
+        <div class="card" id="signUp">
+            <div class="card-left">
+                <div class="heading">   
+                    <h2>HEALTHMATE</h2>
+                    <p>Management Service</p>
+
+                    <form id="signUpForm" autocomplete="off">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required /><br><br>
+
+                        <label for="mail">Email Id</label>
+                        <input type="email" id="mail" name="email" required /><br>
+
+                        <label for="pass">Password</label>
+                        <input type="password" id="pass" name="password" required /><br>
+
+                        <label for="role" class="select_role">Select Role</label>
+                        <select id="role" class="select" required>
+                            <option disabled selected>Select</option>
+                            <option value="PATIENT">Patient</option>
+                        </select>
+
+                        <div class="options">
+                            <input id="remember1" type="checkbox" />
+                            <span class="rem">Remember Me</span>
+                        </div>
+
+                        <button type="submit" id="signUpButton">Register</button><br><br>
+                        <a href="#" id="signInButton">Already have an account? <span class="login">Login</span></a>
+                        <a href="#" id="cguestButton"><span class="guest">Guest</span></a><br><br>
+
+                        <button type="button" id="cgoogle">Continue with google<svg class="gicon"
+                                xmlns="http://www.w3.org/2000/svg" x="" y="" width="30" height="30"
+                                viewBox="0 -7 40 48">
+                                <path fill="#FFC107"
+                                    d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z">
+                                </path>
+                                <path fill="#FF3D00"
+                                    d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z">
+                                </path>
+                                <path fill="#4CAF50"
+                                    d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z">
+                                </path>
+                                <path fill="#1976D2"
+                                    d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z">
+                                </path>
+                            </svg></button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right Icons -->
+            <div class="card-right">
+                <div class="circle">
+                    <i class="fas fa-stethoscope icon top-left"></i>
+                    <i class="fas fa-heartbeat icon top-center"></i>
+                    <i class="fas fa-syringe icon top-right"></i>
+                    <i class="fas fa-x-ray icon middle-right"></i>
+                    <i class="fas fa-notes-medical icon bottom-right"></i>
+                    <i class="fas fa-tablets icon bottom-center"></i>
+                    <i class="fas fa-hospital-user icon bottom-left"></i>
+                    <i class="fas fa-briefcase-medical icon middle-left"></i>
+
+                    <div class="center-logo">
+                        <h3>HEALTHMATE</h3>
+                        <p>Management Service</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Login Form -->
+        <div class="card" id="signIn" style="display: none;">
+            <div class="card-left">
+                <div class="heading">
+                    <h2>HEALTHMATE</h2>
+                    <p>Management Service</p>
+
+                    <form id="loginForm" autocomplete="off">
+                        <label for="email_Login">Email Id</label>
+                        <input type="email" id="email_Login" name="email" required /><br>
+
+                        <label for="password_Login">Password</label>
+                        <input type="password" id="password_Login" name="password" required /><br>
+
+                        <div class="options">
+                            <input id="remember2" type="checkbox" />
+                            <span class="rem">Remember Me</span>
+                        </div>
+
+                        <button type="submit" id="signInSubmit">Login</button><br><br>
+                        <a href="#" id="signUpSwitch">Create new account</a>
+                        <a href="#" id="lguestButton"><span class="guest1">Guest</span></a><br><br>
+
+                         <button type="button" id="lgoogle">Continue with google<svg class="gicon"
+                                xmlns="http://www.w3.org/2000/svg" x="" y="" width="30" height="30"
+                                viewBox="0 -7 40 48">
+                                <path fill="#FFC107"
+                                    d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z">
+                                </path>
+                                <path fill="#FF3D00"
+                                    d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z">
+                                </path>
+                                <path fill="#4CAF50"
+                                    d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z">
+                                </path>
+                                <path fill="#1976D2"
+                                    d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z">
+                                </path>
+                            </svg></button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right Icons -->
+            <div class="card-right">
+                <div class="circle">
+                    <i class="fas fa-stethoscope icon top-left"></i>
+                    <i class="fas fa-heartbeat icon top-center"></i>
+                    <i class="fas fa-syringe icon top-right"></i>
+                    <i class="fas fa-x-ray icon middle-right"></i>
+                    <i class="fas fa-notes-medical icon bottom-right"></i>
+                    <i class="fas fa-tablets icon bottom-center"></i>
+                    <i class="fas fa-hospital-user icon bottom-left"></i>
+                    <i class="fas fa-briefcase-medical icon middle-left"></i>
+
+                    <div class="center-logo">
+                        <h3>HEALTHMATE</h3>
+                        <p>Management Service</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./js/firebase.js" defer></script>
+    <script src="./js/login.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HealthMate Doctor Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+     <link rel="icon" href="./Assets/HealthMate_Logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Main Nav bar */
+        header.sticky {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: #ffffff;
+            border-bottom: 1px solid #ccc;
+            padding: 10px 20px;
+        }
+
+        .con {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-family: "Karma", sans-serif;
+        }
+
+        .item a {
+            text-decoration: none;
+            color: black;
+            font-size: 20px;
+            position: relative;
+        }
+
+        .item a:hover {
+            color: #5409DA;
+            border-radius: 5px;
+        }
+
+        .item a::after {
+            content: '';
+            height: 2px;
+            width: 100%;
+            background: #5409DA;
+            position: absolute;
+            left: 0;
+            top: 30px;
+            opacity: 0;
+        }
+
+        .item a:hover::after {
+            opacity: 1;
+        }
+
+        .con_createbtn {
+            margin-top: 20px;
+            transition: 0.4s;
+            font-family: "Cardo", serif;
+        }
+
+        .con_createbtn:hover {
+            transition: 0.4s;
+            transform: scale(1.08);
+        }
+
+
+        .logo {
+            margin-top: 7px;
+        }
+
+
+        .menu {
+            display: none;
+            cursor: pointer;
+            font-size: 30px;
+            color: black;
+            padding: 0px 10px 0px 10px;
+            margin-top: 10px;
+            text-align: center;
+            border-radius: 10px;
+
+        }
+
+
+        .menu::before {
+            content: "☰";
+        }
+
+        #menu-toggle {
+            display: none;
+        }
+
+        #menu-toggle:checked+.menu::before {
+            content: "✖";
+        }
+
+        #menu-toggle:checked~.item {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        /* Responsiveness */
+
+        @media (max-width: 426px) {
+            .item {
+                display: none;
+                flex-direction: column;
+            }
+
+            .item a {
+                text-decoration: none;
+                color: black;
+                font-size: 14px;
+                position: relative;
+                text-align: center;
+            }
+
+            .logo {
+                margin-top: 20px;
+            }
+
+            .menu {
+                display: block;
+                text-align: center;
+            }
+
+            .item>a {
+                border: none;
+                border-top: 1px solid #fff;
+            }
+
+            .con_createbtn {
+                width: 100px;
+                font-size: 11px;
+                margin-top: 40px;
+            }
+
+        }
+
+        @media (width: 768px) {
+            .item a {
+                text-decoration: none;
+                color: black;
+                font-size: 17px;
+                position: relative;
+            }
+        }
+
+
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+
+        .layout {
+            display: flex;
+            min-height: calc(98vh - 80px);
+            background-color: #f0f2f5;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: linear-gradient(180deg, #5409DA, #3c9ac9);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 30px 20px;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar h2 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 12px 20px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .sidebar a:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(5px);
+        }
+
+        .logout-button {
+            margin-top: auto;
+            padding: 12px;
+            background-color: #e63946;
+            border: none;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .logout-button:hover {
+            background-color: #c43038;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 40px;
+            background-color: #f9fbfd;
+            overflow-y: auto;
+        }
+
+        .profile-info {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 450px;
+            margin: 100px auto;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .profile-item {
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #333;
+        }
+
+
+
+
+        /* Container styling for dashboard content */
+/* Main dashboard content area */
+#dashboardContent {
+  padding: 30px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f7f9fc;
+  min-height: 100vh;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Section headings */
+#dashboardContent h3 {
+  margin-bottom: 25px;
+  font-size: 26px;
+  color: #2b2d42;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* Table appearance */
+#dashboardContent table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 15px;
+}
+
+/* Table headers and cells */
+#dashboardContent th,
+#dashboardContent td {
+  padding: 14px 18px;
+  text-align: center;
+  border-bottom: 1px solid #e6e9f0;
+}
+
+#dashboardContent th {
+  background-color: #1f3c88;
+  color: #ffffff;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+}
+
+#dashboardContent td {
+  color: #333;
+}
+
+/* Row hover effect */
+#dashboardContent tr:hover {
+  background-color: #f3f6fc;
+}
+
+/* Action button styles (View Health Data / Back etc.) */
+#dashboardContent button {
+  margin-top: 20px;
+  padding: 6px 14px;
+  font-size: 13px;
+  width: fit-content;
+  background-color: #1f3c88;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+#dashboardContent button:hover {
+  background-color: #163070;
+  transform: translateY(-1px);
+}
+
+/* Responsive adjustments for mobile/tablet */
+@media (max-width: 768px) {
+  #dashboardContent table,
+  #dashboardContent thead,
+  #dashboardContent tbody,
+  #dashboardContent th,
+  #dashboardContent td,
+  #dashboardContent tr {
+    display: block;
+  }
+
+  #dashboardContent thead {
+    display: none;
+  }
+
+  #dashboardContent td {
+    padding: 12px;
+    text-align: left;
+    position: relative;
+    border: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  #dashboardContent td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+  }
+
+  #dashboardContent button {
+    width: 100%;
+    display: block;
+    margin: 20px auto 0 auto;
+  }
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Slide-up for table */
+@keyframes slideUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Pulse effect on hover */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+
+
+
+
+/* Profile container */
+.profile-info {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  animation: fadeSlideIn 0.6s ease-out;
+}
+
+/* Profile heading */
+.profile-info h3 {
+  text-align: center;
+  font-size: 28px;
+  color: #2352c7 !important;
+  margin-bottom: 20px;
+}
+
+/* Profile items */
+.profile-item {
+  font-size: 18px;
+  margin: 10px 0;
+  color: #333;
+  padding: 10px;
+  border-left: 4px solid #1f3c88;
+  background: #f7f9fc;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.profile-item:hover {
+  background: #e8f0fe;
+}
+
+/* Keyframe animation */
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Appointments Section */
+#dashboardContent h3 {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 26px;
+  color: #1f3c88;
+  font-weight: bold;
+  animation: fadeInSlideDown 0.5s ease-out;
+}
+
+/* Table Styling */
+table.table {
+  width: 95%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  animation: fadeInSlideUp 0.6s ease-out;
+}
+
+table.table thead {
+  background-color: #1f3c88;
+  color: white;
+  font-size: 18px;
+  text-align: center;
+}
+
+table.table th,
+table.table td {
+  padding: 12px 15px;
+  text-align: center;
+  font-size: 16px;
+}
+
+table.table tbody tr:nth-child(even) {
+  background-color: #f2f6fc;
+}
+
+table.table tbody tr:hover {
+  background-color: #e8efff;
+}
+
+/* Button Styling */
+.btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-success {
+  background-color: #28a745 !important;
+  color: white;
+  border: none;
+}
+
+.btn-danger {
+  background-color: #dc3545 !important;
+  color: white;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #218838 !important;
+}
+
+.btn-danger:hover {
+  background-color: #c82333 !important;
+}
+
+/* Animations */
+@keyframes fadeInSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Prescription form container */
+.prescription-form {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  animation: fadeSlideIn 0.6s ease-out;
+}
+
+/* Heading */
+.prescription-form h2,
+#dashboardContent h2 {
+  text-align: center;
+  font-size: 28px;
+  color: #1f3c88;
+  margin-bottom: 25px;
+  animation: fadeSlideIn 0.6s ease-out;
+}
+
+/* Form group spacing */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* Labels */
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Input fields and textarea */
+.form-control {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control:focus {
+  border-color: #5409DA;
+  box-shadow: 0 0 0 3px rgba(84, 9, 218, 0.1);
+  outline: none;
+}
+
+/* Submit Button */
+.prescription-form .btn-primary {
+  background-color: #1f3c88;
+  color: white;
+  font-size: 16px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.prescription-form .btn-primary:hover {
+  background-color: #163070;
+  transform: translateY(-2px);
+}
+
+/* Message box */
+#prescriptionMessage {
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Success message */
+#prescriptionMessage div {
+  padding: 10px;
+  border-radius: 6px;
+}
+
+/* Keyframes */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+}
+
+/* Optional error animation */
+#prescriptionMessage .error {
+  animation: shake 0.4s ease-in-out;
+  color: red;
+  background-color: #ffe6e6;
+}
+
+#prescriptionMessage .success {
+  color: green;
+  background-color: #e6fff0;
+}
+
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Doctor Dashboard Page -->
+
+    <!-- Main Nav Bar -->
+    <header class="sticky">
+        <div class="container-fluid con">
+            <div class="logo">
+                <img src="./Assets/HealthMate_Logo.png" width="65px" alt="logo">
+            </div>
+
+            <div class="nav">
+                <input type="checkbox" id="menu-toggle" />
+                <label for="menu-toggle" class="menu"></label>
+                <div class="nav-1 item"><a href="./index.html">HOME</a></div>
+                <div class="nav-2 item"><a href="./all_doctors.html">ALLDOCTORS</a></div>
+                <div class="nav-3 item"><a href="./about.html">ABOUT</a></div>
+                <div class="nav-4 item"><a href="./contact.html">CONTACT</a></div>
+            </div>
+
+            <!-- Profile Dropdown with Name -->
+            <div class="dropdown d-flex align-items-center gap-2">
+        <span id="doctorName" class="fw-bold text-dark"></span>
+        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="profileDropdown"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          <img id="profileImage" src="https://cdn-icons-png.flaticon.com/512/847/847969.png" width="30" height="30"
+            class="rounded-circle" alt="Profile" />
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+          <li><a class="dropdown-item" href="#" id="dropdownProfile">Profile</a></li>
+          <li>
+            <label class="dropdown-item" for="uploadProfileImage" style="cursor: pointer;">Change Picture</label>
+            <input type="file" id="uploadProfileImage" accept="image/*" style="display: none;" />
+          </li>
+          <li><a class="dropdown-item text-danger" href="#" id="deleteProfileImage">Delete Picture</a></li>
+          <li><a class="dropdown-item" href="#" id="dropdownLogout">Logout</a></li>
+        </ul>
+      </div>
+        </div>
+    </header>
+
+    <!-- Sidebar and Content Layout -->
+    <div class="layout">
+        <div class="sidebar">
+            <h2>Doctor Panel</h2>
+            <a id="navDashboard">Dashboard</a>
+            <a id="navProfile">Profile</a>
+            <a id="navAppointment">Appointments</a>
+            <a id="navPrescription">Prescriptions</a>
+            <button class="logout-button" id="logoutBtn">Logout</button>
+        </div>
+
+        <div class="content">
+            <div id="dashboardContent">
+                <h3>Doctor Dashboard</h3>
+                <p>Welcome Doctor! Use the sidebar to manage appointments and prescriptions.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const firebaseUid = localStorage.getItem('firebaseUid');
+        const userId = localStorage.getItem('userId');
+        const dashboardContent = document.getElementById('dashboardContent');
+
+        if (!firebaseUid || !userId) {
+            alert('User not logged in. Redirecting...');
+            window.location.href = 'create_account.html';
+        }
+
+        // Fetch doctor details using Firebase UID
+        async function fetchDoctorProfile(firebaseUid) {
+            try {
+                const response = await fetch(`http://localhost:8093/api/doctors/getbyuid/${firebaseUid}`);
+                if (!response.ok) throw new Error('Failed to fetch doctor data');
+                return await response.json();
+            } catch (error) {
+                console.error('Error fetching doctor profile:', error);
+                localStorage.clear();
+                window.location.href = 'create_account.html';
+            }
+        }
+
+        // Display doctor profile
+        function displayDoctorProfile(doctor) {
+            dashboardContent.innerHTML = `
+            <div class="profile-info">
+                <h3>Welcome ,${doctor.name} !</h3>
+                <div class="profile-item"><strong>Email:</strong> ${doctor.email}</div>
+                <div class="profile-item"><strong>Role:</strong> ${doctor.role}</div>
+                <div class="profile-item"><strong>Doctor ID:</strong> ${doctor.id}</div>
+            </div>
+        `;
+        }
+
+        // Fetch dummy health data (optional if required for dashboard)
+        async function fetchMyHealthData(userId) {
+            try {
+                const response = await fetch(`http://localhost:8093/healthdata/user/${userId}`);
+                if (!response.ok) throw new Error('Failed to fetch health data');
+                return await response.json();
+            } catch (error) {
+                console.error("Health data fetch error:", error);
+                return [];
+            }
+        }
+
+        // Render health data in a table
+        function renderHealthData(data) {
+            if (data.length === 0) {
+                dashboardContent.innerHTML = '<p>No patient health data available.</p>';
+                return;
+            }
+
+            let html = `
+            <h3>Patient Health Records</h3>
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Patient ID</th>
+                        <th>Date</th>
+                        <th>Weight</th>
+                        <th>Calories</th>
+                        <th>Steps</th>
+                    </tr>
+                </thead>
+                <tbody>
+        `;
+
+            data.forEach(entry => {
+                html += `
+                <tr>
+                    <td>${entry.user_id || (entry.user?.id || 'N/A')}</td>
+                    <td>${entry.date}</td>
+                    <td>${entry.weight}</td>
+                    <td>${entry.calories}</td>
+                    <td>${entry.steps}</td>
+                </tr>
+            `;
+            });
+
+            html += '</tbody></table>';
+            dashboardContent.innerHTML = html;
+        }
+
+        // ✅ NEW: Fetch all unique patients from doctor’s appointments
+    async function fetchDoctorPatients(doctorId) {
+      try {
+        const response = await fetch(`http://localhost:8093/appointments/doctor/${doctorId}`);
+        if (!response.ok) throw new Error("Failed to fetch appointments");
+
+        const appointments = await response.json();
+        const uniquePatients = {};
+
+        appointments.forEach(app => {
+          if (app.patient && !uniquePatients[app.patient.id]) {
+            uniquePatients[app.patient.id] = app.patient;
+          }
+        });
+
+        return Object.values(uniquePatients);
+      } catch (error) {
+        console.error("Error fetching doctor patients:", error);
+        return [];
+      }
+    }
+
+    // ✅ View health data of a selected patient
+    async function viewHealthData(userId, patientName) {
+      dashboardContent.innerHTML = `<h3>Health Data of ${patientName}</h3><p>Loading...</p>`;
+      try {
+        const response = await fetch(`http://localhost:8093/healthdata/user/${userId}`);
+        if (!response.ok) throw new Error("Failed to fetch health data");
+
+        const healthData = await response.json();
+
+        if (healthData.length === 0) {
+          dashboardContent.innerHTML = `<h3>Health Data of ${patientName}</h3><p>No health data found.</p>`;
+          return;
+        }
+
+        let html = `<h3>Health Data of ${patientName}</h3><table border="1" cellpadding="10">
+            <tr><th>Date</th><th>Weight (kg)</th><th>Calories</th><th>Steps</th></tr>`;
+
+        healthData.forEach(data => {
+          html += `<tr>
+              <td>${data.date}</td>
+              <td>${data.weight}</td>
+              <td>${data.calories}</td>
+              <td>${data.steps}</td>
+            </tr>`;
+        });
+
+       html += `</table><br><button onclick="document.getElementById('navDashboard').click()">🔙 Back</button>`;
+
+        dashboardContent.innerHTML = html;
+
+      } catch (error) {
+        console.error("Error viewing health data:", error);
+        dashboardContent.innerHTML = `<p>Error loading health data.</p>`;
+      }
+    }
+
+    // ✅ Show all patients of this doctor on dashboard
+    document.getElementById('navDashboard').addEventListener('click', async () => {
+      dashboardContent.innerHTML = '<p>Loading your patients...</p>';
+      const doctor = await fetchDoctorProfile(firebaseUid);
+      if (!doctor || !doctor.id) {
+        dashboardContent.innerHTML = '<p>Error: Doctor info not found.</p>';
+        return;
+      }
+
+      const patients = await fetchDoctorPatients(doctor.id);
+      if (patients.length === 0) {
+        dashboardContent.innerHTML = '<p>No patients found for your appointments.</p>';
+        return;
+      }
+
+      let html = `<h3>👩‍⚕️ Your Patients</h3>`;
+      patients.forEach((patient) => {
+        html += `
+          <div class="card p-3 mb-3 shadow-sm">
+            <h5>👤 ${patient.name}</h5>
+            <p>📧 ${patient.email}</p>
+            <button class="btn btn-outline-primary btn-sm" onclick="viewHealthData(${patient.id}, '${patient.name}')">View Health Data</button>
+          </div>
+        `;
+      });
+
+      dashboardContent.innerHTML = html;
+    });
+
+
+        document.getElementById('navProfile').addEventListener('click', async () => {
+            const doctor = await fetchDoctorProfile(firebaseUid);
+            if (doctor) displayDoctorProfile(doctor);
+        });
+
+        document.getElementById('navAppointment').addEventListener('click', async () => {
+            dashboardContent.innerHTML = '<p>Loading appointments...</p>';
+
+            try {
+                const doctor = await fetchDoctorProfile(firebaseUid);
+                if (!doctor || !doctor.id) {
+                    dashboardContent.innerHTML = '<p>Error: Doctor info not found.</p>';
+                    return;
+                }
+
+                const response = await fetch(`http://localhost:8093/appointments/doctor/${doctor.id}`);
+                if (!response.ok) throw new Error('Failed to fetch appointments');
+                const appointments = await response.json();
+
+                if (appointments.length === 0) {
+                    dashboardContent.innerHTML = '<p>No appointments found for you.</p>';
+                    return;
+                }
+
+                let html = `
+            <h3>Your Appointments</h3>
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Appointment ID</th>
+                        <th>Patient Name</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+        `;
+
+                appointments.forEach(app => {
+                    const patientName = app.patient?.name || 'N/A';
+                    const dateTime = new Date(app.dateTime);
+                    const date = dateTime.toLocaleDateString();
+                    const time = dateTime.toLocaleTimeString();
+
+                    html += `
+                <tr>
+                    <td>${app.id}</td>
+                    <td>${patientName}</td>
+                    <td>${date}</td>
+                    <td>${time}</td>
+                    <td>${app.status}</td>
+                    <td>
+                        <button class="btn btn-sm btn-success" onclick="updateAppointmentStatus(${app.id}, 'CONFIRMED')">Confirm</button>
+                        <button class="btn btn-sm btn-danger" onclick="updateAppointmentStatus(${app.id}, 'REJECTED')">Reject</button>
+                    </td>
+                </tr>
+            `;
+                });
+
+                html += '</tbody></table>';
+                dashboardContent.innerHTML = html;
+
+            } catch (error) {
+                console.error('Error loading appointments:', error);
+                dashboardContent.innerHTML = '<p>Error loading appointments. Please try again later.</p>';
+            }
+        });
+
+
+
+        async function updateAppointmentStatus(appointmentId, status) {
+            try {
+                const response = await fetch(`http://localhost:8093/appointments/${appointmentId}/status?status=${status}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    alert(`Appointment ${appointmentId} marked as ${status}`);
+                    document.getElementById('navAppointment').click(); // reload appointments
+                } else {
+                    const errorText = await response.text();
+                    alert('Failed to update status: ' + errorText);
+                }
+            } catch (err) {
+                console.error('Network or server error:', err);
+                alert('Error updating appointment status');
+            }
+        }
+
+
+        document.getElementById('navPrescription').addEventListener('click', () => {
+  // Clear main content and show form
+  dashboardContent.innerHTML = `
+    <h2>📝 Add Prescription</h2>
+    <form id="prescriptionForm" class="prescription-form">
+      <div class="form-group">
+        <label for="appointmentId">🔗 Appointment ID</label>
+        <input type="number" id="appointmentId" class="form-control" required />
+      </div>
+
+      <div class="form-group">
+        <label for="documentUrl">📄 Document URL</label>
+        <input type="url" id="documentUrl" class="form-control" placeholder="https://example.com/report.pdf" required />
+      </div>
+
+      <div class="form-group">
+        <label for="notes">🗒️ Notes</label>
+        <textarea id="notes" class="form-control" rows="4" placeholder="Enter prescription notes..." required></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">✅ Submit Prescription</button>
+    </form>
+
+    <div id="prescriptionMessage" style="margin-top: 1rem;"></div>
+  `;
+
+  // Submit handler
+  document.getElementById('prescriptionForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const appointmentId = document.getElementById('appointmentId').value;
+    const documentUrl = document.getElementById('documentUrl').value;
+    const notes = document.getElementById('notes').value;
+
+    const prescription = { documentUrl, notes };
+    const messageDiv = document.getElementById('prescriptionMessage');
+
+    try {
+      const response = await fetch(`http://localhost:8093/prescriptions/add/${appointmentId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(prescription)
+      });
+
+      if (response.ok) {
+        messageDiv.innerHTML = `<div style="color: green;">✔️ Prescription submitted successfully!</div>`;
+        e.target.reset(); 
+        alert('✔️ Prescription submitted successfully!')// clear form
+      } else {
+        messageDiv.innerHTML = `<div style="color: red;">❌ Failed to submit prescription. Please check Appointment ID.</div>`;
+        alert('❌ Failed to submit prescription.')
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      messageDiv.innerHTML = `<div style="color: red;">⚠️ An error occurred. Try again later.</div>`;
+      aleert('⚠️ An error occurred. Try again later.')
+    }
+  });
+});
+
+
+        // Logout logic
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            localStorage.clear();
+            alert('Logged out successfully');
+            window.location.href = 'create_account.html';
+        });
+
+
+
+        // Dropdown Profile and Logout
+        document.getElementById('dropdownProfile').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('navProfile').click();
+        });
+
+        document.getElementById('dropdownLogout').addEventListener('click', () => {
+            document.getElementById('logoutBtn').click();
+        });
+
+        // Load doctor name in navbar on page load
+        fetchDoctorProfile(firebaseUid).then(doctor => {
+            if (doctor && doctor.name) {
+                document.getElementById('doctorName').innerText = `${doctor.name}`;
+            }
+        });
+
+        // Default view: Dashboard
+        document.getElementById('navDashboard').click();
+
+
+
+          const profileImg = document.getElementById('profileImage');
+    const uploadInput = document.getElementById('uploadProfileImage');
+    const deleteBtn = document.getElementById('deleteProfileImage');
+
+    // ✅ 1. Load saved profile image from localStorage
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedImage = localStorage.getItem('profileImage');
+      if (savedImage) {
+        profileImg.src = savedImage;
+      }
+    });
+
+    // ✅ 2. Handle image upload
+    uploadInput.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const imageUrl = e.target.result;
+
+        // Preview and store in localStorage
+        profileImg.src = imageUrl;
+        localStorage.setItem('profileImage', imageUrl);
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // ✅ 3. Handle delete image
+    deleteBtn.addEventListener('click', () => {
+      localStorage.removeItem('profileImage');
+      profileImg.src = "https://cdn-icons-png.flaticon.com/512/847/847969.png"; // default
+      alert("Profile image deleted.");
+    });
+
+    </script>
+</body>
+
+</html>

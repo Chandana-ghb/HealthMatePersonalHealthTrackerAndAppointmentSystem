@@ -1,0 +1,431 @@
+@import url('https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Profile icon */
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+#userProfile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    background-color: #f2f6ff;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+}
+
+#userProfile:hover {
+    background-color: #e0eaff;
+}
+
+.user-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #007bff;
+}
+
+#userName {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 110%;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    min-width: 150px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f0f0f0;
+}
+
+/* Main Nav bar */
+
+header.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 20px;
+}
+
+.con {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-family: "Karma", sans-serif;
+}
+
+.item a {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    position: relative;
+}
+
+.item a:hover {
+    color: #5409DA;
+    border-radius: 5px;
+}
+
+.item a::after {
+    content: '';
+    height: 2px;
+    width: 100%;
+    background: #5409DA;
+    position: absolute;
+    left: 0;
+    top: 30px;
+    opacity: 0;
+}
+
+.item a:hover::after {
+    opacity: 1;
+}
+
+.con_createbtn {
+    margin-top: 20px;
+    transition: 0.4s;
+    font-family: "Karma", sans-serif;
+}
+
+.con_createbtn:hover {
+    transition: 0.4s;
+    transform: scale(1.08);
+}
+
+
+.logo {
+    margin-top: 7px;
+}
+
+
+.menu {
+    display: none;
+    cursor: pointer;
+    font-size: 30px;
+    color: black;
+    padding: 0px 10px 0px 10px;
+    margin-top: 10px;
+    text-align: center;
+
+    border-radius: 10px;
+}
+
+.menu::before {
+    content: "☰";
+}
+
+#menu-toggle {
+    display: none;
+}
+
+#menu-toggle:checked+.menu::before {
+    content: "✖";
+}
+
+#menu-toggle:checked~.item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Responsiveness */
+
+@media (max-width: 426px) {
+    .item {
+        display: none;
+        flex-direction: column;
+    }
+
+    .item a {
+        text-decoration: none;
+        color: black;
+        font-size: 14px;
+        position: relative;
+        text-align: center;
+    }
+
+    .logo {
+        margin-top: 20px;
+    }
+
+    .menu {
+        display: block;
+        text-align: center;
+    }
+
+    .item>a {
+        border: none;
+        border-top: 1px solid #fff;
+    }
+
+    .con_createbtn {
+        font-size: 10px !important;
+        margin-top: 35px;
+    }
+}
+
+@media (width: 768px) {
+    .item a {
+        text-decoration: none;
+        color: black;
+        font-size: 17px;
+        position: relative;
+    }
+}
+
+
+/* About Us */
+
+.about-heading {
+    font-family: "Karma", sans-serif;
+    margin-top: 30px;
+}
+
+.con1-paragraph {
+    padding-top: 80px;
+    font-family: "Karma", sans-serif;
+}
+
+.con1-about-image {
+    transition: 0.5s;
+}
+
+.con1-about-image:hover {
+    transition: 0.4s;
+    transform: scale(1.05);
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 400px;
+    overflow: hidden;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: rgb(158, 204, 245) !important;
+    padding: 20px;
+    font-family: "Karma", sans-serif;
+
+}
+
+.con2-heading {
+    font-family: "Karma", sans-serif;
+}
+
+.vision{
+    font-size: 25px;
+}
+
+/* Responsiveness */
+
+@media only screen and (width: 320px) {
+    .con1-about-image {
+        transition: 0.5s;
+        width: 300px;
+    }
+
+    .con1-about-image:hover {
+        transition: 0.4s;
+        transform: scale(1.05);
+    }
+
+}
+
+@media only screen and (min-width: 424px) and (max-width: 769px) {
+
+    .con1-about-image {
+        transition: 0.5s;
+        width: 400px;
+        height: 450px;
+        margin-top: 25px;
+    }
+
+    .con1-about-image:hover {
+        transition: 0.4s;
+        transform: scale(1.05);
+    }
+}
+
+@media only screen and (min-width: 767px) and (max-width:1000px) {
+    .con1-about-image {
+        transition: 0.5s;
+        width: 230px;
+        height: 450px;
+        margin-top: 55px;
+    }
+
+    .con1-about-image:hover {
+        transition: 0.4s;
+        transform: scale(1.05);
+    }
+}
+
+/* Footer */
+
+.footer-company-list {
+    list-style: none;
+}
+
+.con3-company {
+    padding-top: 15%;
+    font-family: "Karma", sans-serif;
+}
+
+.footer-GIT-list {
+    list-style: none;
+}
+
+.con3-GIT {
+    padding-top: 15%;
+    font-family: "Karma", sans-serif;
+}
+
+.con3-image {
+    padding: 15% 23%;
+}
+
+.con3-name {
+    font-weight: bold;
+    font-size: 27px;
+    font-family: "Karma", sans-serif;
+}
+
+.con3-footer {
+    padding-top: 50px;
+    padding-left: 100px;
+}
+
+.con3-para {
+    font-family: "Karma", sans-serif;
+
+}
+
+.Copyright {
+   font-weight: bold;
+
+}
+
+
+/* Responsiveness */
+
+@media only screen and (width:320px) {
+
+
+    .con3-footer {
+        margin-left: -70px;
+    }
+
+    .con3-company {
+
+        margin-top: -40px;
+        margin-left: 80px;
+    }
+
+    .con3-GIT {
+        margin-top: -40px;
+        margin-left: 60px;
+    }
+
+}
+
+@media only screen and (min-width:375px) and (max-width:425px) {
+
+    .con3-footer {
+        margin-left: -20px;
+    }
+
+    .con3-company {
+        margin-top: -40px;
+        margin-left: 80px;
+    }
+
+    .con3-GIT {
+        margin-top: -40px;
+        margin-left: 75px;
+    }
+
+    .con3-buttons {
+        margin-left: 10px;
+    }
+
+}
+
+@media only screen and (min-width:425px) and (max-width:767px) {
+
+    .con3-footer {
+        margin-left: -50px;
+    }
+
+    .con3-company {
+
+        margin-top: -50px;
+        margin-left: 120px;
+    }
+
+    .con3-GIT {
+        margin-top: -50px;
+        margin-left: 85px;
+    }
+
+}
+
+@media only screen and (width:768px) {
+
+    .con3-footer {
+        margin-left: -50px;
+    }
+
+    .con3-company {
+        margin-left: -30px;
+        margin-top: 35px;
+    }
+
+    .con3-GIT {
+        margin-left: -40px;
+        margin-top: 40px;
+    }
+
+}

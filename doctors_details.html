@@ -1,0 +1,873 @@
+<!-- doctor.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doctor Profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+   <link rel="icon" href="./Assets/HealthMate_Logo.png">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&display=swap');
+
+    /* Profile icon */
+    .user-dropdown {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    #userProfile {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      background-color: #f2f6ff;
+      border-radius: 20px;
+      border: 1px solid #ddd;
+    }
+
+    #userProfile:hover {
+      background-color: #e0eaff;
+    }
+
+    .user-img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #007bff;
+    }
+
+    #userName {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 110%;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      min-width: 150px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      z-index: 1000;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 15px;
+      color: #333;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .profile-wrapper {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      font-family: "Karma", sans-serif;
+    }
+
+    .container {
+      margin-top: 20px;
+    }
+
+    .card {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .doc-info {
+      flex: 2;
+      min-width: 300px;
+      height: 325px;
+      font-size: 20px;
+      padding-top: 25px;
+    }
+
+
+
+    .image_color {
+      background: #8fa5d9;
+      background: linear-gradient(5deg, rgba(143, 165, 217, 1) 19%, rgba(53, 63, 181, 1) 51%, rgba(77, 225, 255, 1) 100%);
+    }
+
+    /* Main Nav bar */
+
+    header.sticky {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: #ffffff;
+      border-bottom: 1px solid #ccc;
+      padding: 10px 20px;
+    }
+
+    .con {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50%;
+      gap: 20px;
+      flex-wrap: wrap;
+       font-family: "Karma", sans-serif;
+    }
+
+    .item a {
+      text-decoration: none;
+      color: black;
+      font-size: 20px;
+      position: relative;
+    }
+
+    .item a:hover {
+      color: #5409DA;
+      border-radius: 5px;
+    }
+
+    .item a::after {
+      content: '';
+      height: 2px;
+      width: 100%;
+      background: #5409DA;
+      position: absolute;
+      left: 0;
+      top: 30px;
+      opacity: 0;
+    }
+
+    .item a:hover::after {
+      opacity: 1;
+    }
+
+    .con_createbtn {
+      margin-top: 20px;
+      transition: 0.4s;
+       font-family: "Karma", sans-serif;
+
+    }
+
+    .con_createbtn:hover {
+      transition: 0.4s;
+      transform: scale(1.08);
+    }
+
+
+    .logo {
+      margin-top: 7px;
+    }
+
+
+    .menu {
+      display: none;
+      cursor: pointer;
+      font-size: 30px;
+      color: black;
+      padding: 0px 10px 0px 10px;
+      margin-top: 10px;
+      text-align: center;
+
+      border-radius: 10px;
+    }
+
+    .menu::before {
+      content: "☰";
+    }
+
+    #menu-toggle {
+      display: none;
+    }
+
+    #menu-toggle:checked+.menu::before {
+      content: "✖";
+      color: red;
+    }
+
+    #menu-toggle:checked~.item {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+
+    .card2 {
+      height: 330px;
+    }
+
+    input {
+      margin-top: 20px;
+    }
+
+    /* Responsiveness */
+
+    @media (max-width: 376px) {
+
+      .card2 {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        padding: 20px;
+        font-size: 16px;
+      }
+
+    }
+
+    @media (max-width: 426px) {
+      .item {
+        display: none;
+        flex-direction: column;
+      }
+
+      .item a {
+        text-decoration: none;
+        color: black;
+        font-size: 14px;
+        position: relative;
+        text-align: center;
+      }
+
+      .logo {
+        margin-top: 20px;
+      }
+
+      .menu {
+        display: block;
+        text-align: center;
+      }
+
+      .item>a {
+        border: none;
+        border-top: 1px solid #fff;
+      }
+
+      .con_createbtn {
+        font-size: 10px;
+        margin-top: 25px;
+
+      }
+
+      .card2 {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        padding: 20px;
+        height: 480px;
+      }
+
+    }
+
+    .card {
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin: 10px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      
+    }
+
+    .profile-wrapper {
+      display: flex;
+      gap: 20px;
+    }
+
+    .slots {
+      margin: 20px auto;
+      text-align: center;
+    }
+
+    .time {
+      margin: 5px;
+      padding: 10px;
+      border: 1px solid gray;
+      border-radius: 5px;
+      cursor: pointer;
+      display: inline-block;
+      
+    }
+
+    .time.selected {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    .book-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+
+    .badge {
+      color: white;
+      background-color: #4E71FF;
+    }
+    .about_symbol{
+      margin-left: 10px;
+
+    }
+
+    @media (width: 768px) {
+      .item a {
+        text-decoration: none;
+        color: black;
+        font-size: 17px;
+        position: relative;
+      }
+
+
+      .card2 {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        padding: 20px;
+        height: 520px;
+      }
+
+
+    }
+
+
+    /* Footer */
+
+    .footer-company-list {
+      list-style: none;
+   
+    }
+
+    .con2-company {
+      padding-top: 15%;
+       font-family: "Karma", sans-serif;
+    }
+
+    .footer-GIT-list {
+      list-style: none;
+    
+    }
+
+    .con2-GIT {
+      padding-top: 15%;
+       font-family: "Karma", sans-serif;
+    }
+
+    .con2-image {
+      padding: 15% 23%;
+    }
+
+    .con2-name {
+      font-weight: bold;
+      font-size: 27px;
+    }
+
+    .con2-footer {
+      padding-top: 50px;
+      padding-left: 100px;
+      font-family: "Karma", sans-serif;
+
+    }
+
+    .Copyright{
+      font-weight: bold;
+    }
+
+
+    /* Responsiveness */
+
+    @media only screen and (width:320px) {
+
+
+      .con2-footer {
+        margin-left: -70px;
+      }
+
+      .con2-company {
+
+        margin-top: -40px;
+        margin-left: 80px;
+      }
+
+      .con2-GIT {
+        margin-top: -40px;
+        margin-left: 60px;
+      }
+
+    }
+
+    @media only screen and (min-width:375px) and (max-width:425px) {
+
+      .con2-footer {
+        margin-left: -20px;
+      }
+
+      .con2-company {
+        margin-top: -40px;
+        margin-left: 80px;
+      }
+
+      .con2-GIT {
+        margin-top: -40px;
+        margin-left: 75px;
+      }
+
+      .con2-buttons {
+        margin-left: 10px;
+      }
+
+    }
+
+    @media only screen and (min-width:425px) and (max-width:767px) {
+
+      .con2-footer {
+        margin-left: -50px;
+      }
+
+      .con2-company {
+
+        margin-top: -50px;
+        margin-left: 120px;
+      }
+
+      .con2-GIT {
+        margin-top: -50px;
+        margin-left: 85px;
+      }
+
+    }
+
+    @media only screen and (width:768px) {
+
+      .con2-footer {
+        margin-left: -50px;
+      }
+
+      .con2-company {
+        margin-left: -30px;
+        margin-top: 35px;
+      }
+
+      .con2-GIT {
+        margin-left: -40px;
+        margin-top: 40px;
+      }
+
+    }
+
+    /* Times layout (on a new row, wrapped) */
+    .time-slot {
+      display: inline-block;
+      padding: 8px 12px;
+      margin: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      cursor: pointer;
+      background-color: #f7f7f7;
+    }
+
+    .time-slot.selected {
+      background-color: #28a745;
+      color: white;
+      border-color: #28a745;
+    }
+
+
+.slots {
+  margin: 30px auto;
+  padding: 25px;
+  background: #f9f9f9;
+  border-radius: 15px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.booking_slots {
+  font-size: 28px;
+  font-weight: 600;
+  color: black;
+  display: block;
+  text-align: center;
+}
+
+#date {
+  font-size: 20px;
+  color: #333; 
+
+}
+
+#appointment-date {
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid black;
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
+  margin-left: 20px;
+}
+
+#time-slots {
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.time-slot {
+  padding: 10px;
+  background-color: #e7f0ff;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+  border: 2px solid transparent;
+}
+
+.time-slot:hover {
+  background-color: #d0e4ff;
+  border-color: #1a73e8;
+}
+
+.time-slot.selected {
+  background-color: #1a73e8;
+  color: white;
+  border-color: #155ab6;
+}
+
+.book-btn {
+  margin-top: 25px;
+  background-color: black;
+  color: white;
+  padding: 8px 8px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 2s;
+}
+
+.book-btn:hover {
+  transition: 2s;
+  transform: scale(1.12);
+  background-color: #1a73e8;
+}
+
+
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Main Nav Bar -->
+  <header class="sticky">
+    <div class="container-fluid con">
+      <div class="logo"><img src="./Assets/HealthMate_Logo.png" width="60px" alt="logo"></div>
+
+      <div class="nav">
+        <input type="checkbox" id="menu-toggle" />
+        <label for="menu-toggle" class="menu"></label>
+        <div class="nav-1 item"><a href="./index.html">HOME</a></div>
+        <div class="nav-2 item"><a href="./all_doctors.html">ALLDOCTORS</a></div>
+        <div class="nav-3 item"><a href="./about.html">ABOUT</a></div>
+        <div class="nav-4 item"><a href="./contact.html">CONTACT</a></div>
+      </div>
+      <div id="header" style="display: flex; justify-content: space-between; align-items: center; padding: 10px;">
+        <a href="./create_account.html"><button id="createAccountBtn" class="con_createbtn"
+            style="background-color: #4E71FF; color:white; padding: 10px; border-radius: 10px; border: none;">Create
+            Account</button></a>
+
+        <div id="userProfile" class="dropdown-toggle">
+                    <img id="profileImage" src="https://cdn-icons-png.flaticon.com/512/847/847969.png" width="30"
+                        height="30" class="rounded-circle" alt="Profile" />
+                    <span id="userName">Chandana</span>
+                </div>
+
+        <div id="dropdownMenu" class="dropdown-menu">
+          <a href="#" id="logoutBtn">Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <div id="profile"></div>
+
+
+  <!-- Footer -->
+  <footer>
+    <div class="container-fluid con2">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="con2-footer">
+            <img src="./Assets/HealthMate_Logo.png" width="50px" alt="HealthMate_Logo"><span
+              class="con2-name">HealthMate</span>
+            <div class="col-md-8 con2-para">
+              <p>Health Mate is your trusted digital healthcare companion, committed to making medical
+                services more accessible and convenient. From booking appointments to tracking
+                prescriptions and managing health records, Built with care for both patients and healthcare
+                professionals.</p>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-3">
+          <div class="con2-company">
+            <h2>company</h2>
+            <ul class="footer-company-list">
+              <li>Home</li>
+              <li>About us</li>
+              <li>Delivery</li>
+              <li>Privacy Policy</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="con2-GIT">
+            <h2>Get In Touch</h2>
+            <ul class="footer-GIT-list">
+              <li>+1-412-456-7890</li>
+              <li>healthmate@gmail.com</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <center>
+       <p class="Copyright">Copyright @ 2025 Healthmate.com@ - All Right Reserved.</p>
+      </center>
+    </div>
+  </footer>
+
+  <script>
+    const storedDoctorId = localStorage.getItem('doctorId');
+    // ✅ STEP 1: Extract doctor from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const docData = urlParams.get('data');
+    const doctor = docData ? JSON.parse(decodeURIComponent(docData)) : null;
+
+    if (!doctor) {
+      document.getElementById('profile').innerHTML = '<p>Doctor data not found.</p>';
+    } else {
+      showDoctorProfile(doctor);
+    }
+
+    // ✅ STEP 2: Function to display doctor profile and handle booking
+    function showDoctorProfile(doc) {
+      const profile = document.getElementById('profile');
+
+      profile.innerHTML = `
+    <div class="container">
+      <div class="profile-wrapper">
+        <div class="doc-image card ">
+          <img src="${doc.image}" alt="${doc.name}" class="image_color"
+            style="width: 250px; height: 280px; object-fit: cover; border-radius: 10px;" />
+        </div>
+        <div class="doc-info card card2">
+          <h3 class="doc-title">${doc.name} <span class="verified">✔️</span></h3>
+          <p><strong>${doc.speciality}</strong> <span class="badge">${doc.experience}</span></p>
+          <p><strong>About<svg xmlns="http://www.w3.org/2000/svg" class="about_symbol" width="22" height="22" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+  <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>
+</svg></strong><br>${doc.aboutDoctor}</p>
+          <p><strong>Appointment Fee:</strong> ₹${doc.fee}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slots">
+      <strong class="booking_slots">Booking slots</strong><br/>
+      <label for="appointment-date" id="date">Select a date:</label>
+      <input type="date" id="appointment-date" /><br/><br/>
+
+      <div id="time-slots">
+        <span class="time-slot">10:00 AM</span>
+        <span class="time-slot">10:30 AM</span>
+        <span class="time-slot">11:00 AM</span>
+        <span class="time-slot">11:30 AM</span>
+        <span class="time-slot">12:00 PM</span>
+        <span class="time-slot">12:30 PM</span>
+        <span class="time-slot">01:00 PM</span>
+        <span class="time-slot">01:30 PM</span>
+        <span class="time-slot">02:00 PM</span>
+      </div>
+      <center><button class="book-btn" id="bookBtn">Book an appointment</button></center>
+    </div>
+  `;
+
+      // ✅ STEP 3: Time slot selection
+      let selectedSlot = null;
+      const slotElements = document.querySelectorAll('.time-slot');
+
+      slotElements.forEach(slot => {
+        slot.addEventListener('click', () => {
+          slotElements.forEach(s => s.classList.remove('selected'));
+          slot.classList.add('selected');
+          selectedSlot = slot.textContent;
+        });
+      });
+
+      // ✅ STEP 4: Booking handler
+      document.getElementById('bookBtn').addEventListener('click', async () => {
+        const selectedDate = document.getElementById('appointment-date').value;
+        const selectedSlot = document.querySelector('.time-slot.selected')?.textContent;
+
+        if (!selectedDate || !selectedSlot) {
+          alert('❗ Please select both a date and a time slot.');
+          return;
+        }
+
+        const patientId = localStorage.getItem("patientId");
+        const doctorId = doctor.id;
+
+        if (!patientId) {
+          alert("❗ Please log in first to book an appointment.");
+          return;
+        }
+
+        const time24 = convertTo24Hour(selectedSlot);
+        const dateTime = `${selectedDate}T${time24}:00`;
+
+        const appointmentPayload = {
+          dateTime: dateTime,
+          status: "PENDING"
+        };
+
+        try {
+          const res = await fetch(`http://localhost:8093/appointments/create/${patientId}/${doctorId}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(appointmentPayload)
+          });
+
+          if (res.ok) {
+            alert(`✅ Appointment booked on ${selectedDate} at ${selectedSlot}`);
+          } else {
+            const errorText = await res.text();
+            alert("❌ Booking failed: " + errorText);
+          }
+        } catch (err) {
+          console.error(err);
+          alert("❌ An error occurred while booking.");
+        }
+      });
+
+
+      function convertTo24Hour(time12h) {
+        const [time, modifier] = time12h.split(' ');
+        let [hours, minutes] = time.split(':');
+
+        if (hours === '12') hours = '00';
+        if (modifier === 'PM') hours = parseInt(hours, 10) + 12;
+
+        return `${hours.toString().padStart(2, '0')}:${minutes}`;
+      }
+
+
+      // ✅ Trigger doctor profile rendering when page loads with query param
+      const params = new URLSearchParams(window.location.search);
+      const doctorParam = params.get('doctor');
+      if (doctorParam) {
+        const doctor = JSON.parse(decodeURIComponent(doctorParam));
+        showDoctorProfile(doctor);
+      }
+    }
+
+
+    // <!----------------Profile Icon--------------  -->
+
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const isLoggedIn = localStorage.getItem('isLoggedIn');
+      const userName = localStorage.getItem('name');
+      const createAccountBtn = document.getElementById('createAccountBtn');
+      const userProfile = document.getElementById('userProfile');
+      const userIcon = document.getElementById('userIcon');
+      const userNameSpan = document.getElementById('userName');
+
+      if (isLoggedIn === 'true' && userName) {
+        createAccountBtn.style.display = 'none';
+        userProfile.style.display = 'flex';
+
+        // Display user name
+        userNameSpan.textContent = userName;
+
+        // Create initials
+        const initials = userName
+          .split(' ')
+          .map(word => word[0])
+          .join('')
+          .toUpperCase();
+
+        userIcon.textContent = initials;
+      } else {
+        createAccountBtn.style.display = 'inline-block';
+        userProfile.style.display = 'none';
+      }
+    });
+
+
+    const userProfile = document.getElementById("userProfile");
+        const dropdownMenu = document.getElementById("dropdownMenu");
+        const logoutBtn = document.getElementById("logoutBtn");
+
+        // Toggle dropdown menu on click
+        userProfile.addEventListener("click", (e) => {
+            e.stopPropagation(); // prevent triggering document click
+            dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
+        });
+
+        // Close dropdown if click outside
+        document.addEventListener("click", function (e) {
+            if (!userProfile.contains(e.target)) {
+                dropdownMenu.style.display = "none";
+            }
+        });
+
+        // Logout logic
+        logoutBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            localStorage.clear();
+            window.location.href = "index.html";
+        });
+
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const profileImg = document.getElementById('profileImage');
+            const savedImage = localStorage.getItem('profileImage');
+            if (savedImage && profileImg) {
+                profileImg.src = savedImage;
+            }
+        });
+
+  </script>
+
+</body>
+
+</html>
