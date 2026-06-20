@@ -753,7 +753,7 @@
 
     async function fetchUserProfile(id) {
       try {
-        const response = await fetch(`http://localhost:8093/user/getuses/${id}`);
+        const response = await fetch(`https://healthmatepersonalhealthtrackerandappoin.onrender.com/user/getuses/${id}`);
         if (!response.ok) throw new Error('Failed to fetch user data');
         return await response.json();
       } catch (error) {
@@ -810,7 +810,7 @@
         const healthData = { date, weight, calories, steps };
 
         try {
-          const response = await fetch(`http://localhost:8093/healthdata/add/${userId}`, {
+          const response = await fetch(`https://healthmatepersonalhealthtrackerandappoin.onrender.com/healthdata/add/${userId}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(healthData)
@@ -841,7 +841,7 @@
       const patientId = localStorage.getItem("userId");
 
       try {
-        const response = await fetch(`http://localhost:8093/appointments/patient/${patientId}`);
+        const response = await fetch(`https://healthmatepersonalhealthtrackerandappoin.onrender.com/appointments/patient/${patientId}`);
         const appointments = await response.json();
 
         const listContainer = document.getElementById('appointmentsList');
@@ -881,7 +881,7 @@
 
       try {
         // Step 1: Fetch all appointments for the patient
-        const appointmentResponse = await fetch(`http://localhost:8093/appointments/patient/${patientId}`);
+        const appointmentResponse = await fetch(`https://healthmatepersonalhealthtrackerandappoin.onrender.com/appointments/patient/${patientId}`);
         if (!appointmentResponse.ok) throw new Error("Failed to fetch appointments");
 
         const appointments = await appointmentResponse.json();
@@ -893,7 +893,7 @@
 
         // Step 2: For each appointment, fetch prescriptions
         for (const appointment of appointments) {
-          const presRes = await fetch(`http://localhost:8093/prescriptions/appointment/${appointment.id}`);
+          const presRes = await fetch(`https://healthmatepersonalhealthtrackerandappoin.onrender.com/prescriptions/appointment/${appointment.id}`);
           if (!presRes.ok) continue;
 
           const prescriptions = await presRes.json();
