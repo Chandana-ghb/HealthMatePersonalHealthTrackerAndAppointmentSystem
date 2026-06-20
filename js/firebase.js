@@ -42,7 +42,7 @@ if (cgoogle) {
             .then((result) => {
                 const user = result.user;
 
-                fetch(`http://localhost:8093/user/getbyuid/${user.uid}`)
+                fetch(`https://healthmatepersonalhealthtrackerandappoin.onrender.com/user/getbyuid/${user.uid}`)
                     .then(response => {
                         if (response.ok) {
                             return response.json();
@@ -91,7 +91,7 @@ if (cgoogle) {
                         }
 
                         // Register to backend
-                        fetch('http://localhost:8093/user/save', {
+                        fetch('https://healthmatepersonalhealthtrackerandappoin.onrender.com/user/save', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({
@@ -148,7 +148,7 @@ if (lgoogle) {
             .then((result) => {
                 const user = result.user;
 
-                fetch(`http://localhost:8093/user/getbyuid/${user.uid}`)
+                fetch(`https://healthmatepersonalhealthtrackerandappoin.onrender.com/user/getbyuid/${user.uid}`)
                     .then(response => {
                         if (!response.ok) {
                             throw new Error("User not found in database. Please sign up.");
@@ -226,7 +226,7 @@ if (cguestButton) {
                 createdAt: new Date()
             });
 
-            const response = await fetch('http://localhost:8093/user/save', {
+            const response = await fetch('https://healthmatepersonalhealthtrackerandappoin.onrender.com/user/save', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -286,7 +286,7 @@ if (lguestButton) {
             const result = await signInAnonymously(auth);
             const user = result.user;
 
-            const response = await fetch(`http://localhost:8093/user/getbyuid/${user.uid}`);
+            const response = await fetch(`https://healthmatepersonalhealthtrackerandappoin.onrender.com/user/getbyuid/${user.uid}`);
 
             if (!response.ok) {
                 throw new Error("Guest user not found in backend with current session. Please register as guest first.");
@@ -364,8 +364,8 @@ if (signUpBtn) {
 
       // ⬅️ Role-based backend API
       const endpoint = (role.toUpperCase() === "DOCTOR")
-        ? "http://localhost:8093/api/doctors/save"
-        : "http://localhost:8093/user/save";
+        ? "https://healthmatepersonalhealthtrackerandappoin.onrender.com/api/doctors/save"
+        : "https://healthmatepersonalhealthtrackerandappoin.onrender.com/user/save";
 
       const response = await fetch(endpoint, {
         method: 'POST',
@@ -435,7 +435,7 @@ if (signInSubmit) {
       const firebaseUid = user.uid;
 
       // ⬅️ First: Try Doctor table
-      const doctorResponse = await fetch(`http://localhost:8093/api/doctors/getbyuid/${firebaseUid}`);
+      const doctorResponse = await fetch(`https://healthmatepersonalhealthtrackerandappoin.onrender.com/api/doctors/getbyuid/${firebaseUid}`);
       if (doctorResponse.ok) {
         const doctor = await doctorResponse.json();
 
@@ -453,7 +453,7 @@ if (signInSubmit) {
       }
 
       // ⬅️ Else: Try Patient table
-      const patientResponse = await fetch(`http://localhost:8093/user/getbyuid/${firebaseUid}`);
+      const patientResponse = await fetch(`https://healthmatepersonalhealthtrackerandappoin.onrender.com/user/getbyuid/${firebaseUid}`);
       if (patientResponse.ok) {
         const patient = await patientResponse.json();
 
