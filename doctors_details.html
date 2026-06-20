@@ -757,7 +757,7 @@
         };
 
         try {
-          const res = await fetch(`http://localhost:8093/appointments/create/${patientId}/${doctorId}`, {
+          const res = await fetch(`https://healthmatepersonalhealthtrackerandappoin.onrender.com/appointments/create/${patientId}/${doctorId}`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
