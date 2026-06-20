@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Fetch and display user profile
   async function loadUserProfile() {
     try {
-      const response = await fetch(`http://localhost:8093/user/getuses/${userId}`);
+      const response = await fetch(`https://healthmatepersonalhealthtrackerandappoin.onrender.com/user/getuses/${userId}`);
       if (!response.ok) throw new Error("User not found");
 
       const user = await response.json();
